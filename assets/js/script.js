@@ -1,10 +1,33 @@
 // Assignment code here
-const capitalLetterChars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-const lowercaseChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-const numberChars = [1,2,3,4,5,6,7,8,9];
+
+function getLowerChars() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+function getUpperChars() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+function getNumberChars() {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+function getSymbolChars() {
+  return String.fromCharCode(Math.floor(Math.random() * 14) + 33);
+}
 
 
-function generatePassword(e) {
+console.log(getSymbolChars());
+
+
+
+
+
+
+
+
+
+
+
+
+function setPasswordCriteria() {
 
   let promptLength = prompt('How long would you like the password to be?');
     if(promptLength >= 8 && promptLength <= 128) {
@@ -32,7 +55,7 @@ function generatePassword(e) {
       alert('Your password will include numbers.')
     }else{
       alert('Your password will not include numbers');
-    }  
+    } 
 }
 
 
