@@ -1,67 +1,78 @@
 // Assignment code here
+const upperChars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const lowerChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+const numChars = [0,1,2,3,4,5,6,7,8,9];
+const specChars = ['!','@','#','$','%','^','&','*','(',')','_','+'];
+let passwordArr = [];
+let newPass = [];
 
-function getLowerChars() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+
+
+function generatePassword() {
+  newPass = [];
+  var upper = window.confirm("Do you want to include Uppercase Characters?");
+  if (upper) {
+    passwordArr = passwordArr + upperChars;
+    alert("You are inluding uppercase characters");
+  } else {
+    alert("You are not including uppercase characters");
+  }
+  
+  var lower = window.confirm("Do you want to include Lower Characters?");
+  if (lower) {
+    passwordArr = passwordArr + lowerChars;
+    alert("You are inluding Lower characters");
+  } else {
+    alert("You are not including Lower characters");
+  }
+  
+  var nums = window.confirm("Do you want to include Number Characters?");
+  if (nums) {
+    passwordArr = passwordArr + numChars;
+    alert("You are inluding Number characters");
+  } else {
+    alert("You are not including Number characters");
+  }
+  
+  var specs = window.confirm("Do you want to include Special Characters?");
+  if (specs) {
+    passwordArr = passwordArr + specChars;
+    alert("You are inluding Special characters");
+  } else {
+    alert("You are not including Special characters");
+  }
+  // console.log(passwordArr);
+  
+  var passwordLength = parseInt(
+    window.prompt(
+      "How many characters would you like to include in your password? Please select a number between 8 and 128."
+    )
+  );
+  alert(`You have chosen to include ${passwordLength} characters in your password.`);
+  if (passwordLength < 8 || passwordLength > 128) {
+    passwordLength = prompt("Please pick a number between 8 and 128.");
+  }
+  // console.log(passwordLength);
+
+
+  for(i = 1; i <= passwordLength; i++) {
+    let randPasswordChar =  Math.floor(Math.random() * passwordArr.length + 1);
+    let oneChar = passwordArr[randPasswordChar];
+    newPass += oneChar;
+  }
+
+  return newPass ;
 }
-function getUpperChars() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-function getNumberChars() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-function getSymbolChars() {
-  return String.fromCharCode(Math.floor(Math.random() * 14) + 33);
-}
-
-
-console.log(getSymbolChars());
 
 
 
-
-
-
-
-
-
-
-
-
-function setPasswordCriteria() {
-
-  let promptLength = prompt('How long would you like the password to be?');
-    if(promptLength >= 8 && promptLength <= 128) {
-      alert(`Your password will be ${promptLength} characters long.`)
-    }else{
-      alert('Please pick a number between 8-128?')
-    }
-
-    let capitalLetterPrompt = confirm('Would you like to include capital letters in your password?')
-    if(numberChars) {
-      alert('Your password will include capital letters.')
-    }else{
-      alert('Your password will not include capital letters');
-    }
-
-    let lowercaseLetterPrompt = confirm('Would you like to include lowercase letters in your password?')
-    if(numberChars) {
-      alert('Your password will include lowercase letters.')
-    }else{
-      alert('Your password will not include lowercase letters');
-    }
-
-    let numPrompt = confirm('Would you like to include numbers in your password?')
-    if(numberChars) {
-      alert('Your password will include numbers.')
-    }else{
-      alert('Your password will not include numbers');
-    } 
-}
 
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
 
 // Write password to the #password input
 function writePassword() {
@@ -69,8 +80,9 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
